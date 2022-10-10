@@ -32,12 +32,12 @@ soup = bs(page.content, 'html.parser')
 
 ### CURRENT SWELL ###
 
-swell = soup.findAll(class_ ="rating-text text-dark")[0] # 2 instaces of the class, want first which is current condition
-swellText = swell.get_text() # Extract text data
-swellSplit = swellText.split(' ')
-swellClean = swellSplit[4]
+wind = soup.find(class_ ="h5 nomargin-top").get_text()
+information = soup.find(class_ ="svg-icon-container msw-js-tooltip")["title"]
 
-now_date = datetime.now().strftime("%d/%m/%Y")
-now_time = datetime.now().strftime("%H:%M")
+direction, degree = information.split('-')
+direction = direction[:-2]
+degree = degree[1:]
 
 
+print(direction, degree)
